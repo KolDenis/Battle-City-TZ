@@ -85,9 +85,18 @@ public class LabirintManager : MonoBehaviour
                     wall.transform.localPosition = new Vector3(m_OffsetLabirint + j * m_SizeCell, m_OffsetLabirint + i * m_SizeCell + m_SizeCell / 2);
                     wall.transform.localScale = new Vector2(m_SizeCell, m_WeightWall);
                 }
-                Debug.Break();
             }
         }
+    }
+
+    public int[] GetPositionInLabirint(Vector3 pos)
+    {
+        return new int[2] { (int)((Mathf.Abs(m_OffsetLabirint) + pos.x) * m_Floor.transform.localScale.x), (int)((Mathf.Abs(m_OffsetLabirint) + pos.y) * m_Floor.transform.localScale.y)};
+    }
+
+    public int[] GetWays(int[] pos)
+    {
+        return m_Labirint.where_can_go(pos[0], pos[1]);
     }
 
     // Update is called once per frame

@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
             int cell = Random.Range(0, labirintSize* labirintSize);
             GameObject prefabTank = m_Tanks[Random.Range(0, m_Tanks.Length)];
             GameObject spawnedTank = Instantiate<GameObject>(prefabTank, m_Floor.transform);
-            spawnedTank.transform.localPosition = new Vector3(offsetLabirint + cell / labirintSize * sizeCell, offsetLabirint + cell % labirintSize * sizeCell, -1);
+            spawnedTank.transform.localPosition = new Vector3(offsetLabirint + cell / labirintSize * sizeCell, offsetLabirint + cell % labirintSize * sizeCell, -2);
             spawnedTank.transform.localScale = Vector3.one * sizeCell * m_FactorSizeTank;
         }
     }
