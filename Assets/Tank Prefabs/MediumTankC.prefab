@@ -262,6 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2247348942753610619}
   - component: {fileID: -7141442262908090274}
+  - component: {fileID: -8306968764727052390}
   m_Layer: 6
   m_Name: MediumTankC
   m_TagString: Enemy
@@ -304,6 +305,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &-8306968764727052390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2247348942753610618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a83faf9855631449af04a2fe45b6bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2247348942981717451
 GameObject:
   m_ObjectHideFlags: 0

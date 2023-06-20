@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject m_Floor;
 
-    private int m_NumberEnemys = 3;
+    private int m_NumberEnemys = 1;
     private float m_FactorSizeTank = 0.3f;
     void Start()
     {

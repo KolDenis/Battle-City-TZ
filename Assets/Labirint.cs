@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -129,13 +130,7 @@ public class Labirint
         }
 
         Random rand = new Random();
-        /*for (int i = 0; i < size_lab; i++)
-        {
-            for (int j = 0; j < size_lab; j++)
-            {
-                mas[i, j] = 0;
-            }
-        }*/
+
         bool go = true;
         int[] list_way = new int[4];
         int number_way;
@@ -215,5 +210,105 @@ public class Labirint
             }
 
         }
+    }
+
+    int go_backwardFindingWay(ref int x, ref int y)
+    {
+        int step = mas[x, y];
+        int count = 0;
+
+        while (true)
+        {
+            int[] massive = where_can_go(way[step - 1][0], way[step - 1][1]);
+            count = 0;
+            if (massive[0] == 1 && mas[way[step - 1][0] - 1, way[step - 1][1]] == 0)
+            {
+                count++;
+            }
+            if (massive[1] == 1 && mas[way[step - 1][0], way[step - 1][1] - 1] == 0)
+            {
+                count++;
+            }
+            if (massive[2] == 1 && mas[way[step - 1][0] + 1, way[step - 1][1]] == 0)
+            {
+                count++;
+            }
+            if (massive[3] == 1 && mas[way[step - 1][0], way[step - 1][1] + 1] == 0)
+            {
+                count++;
+            }
+            if (count > 0)
+            {
+                break;
+            }
+            else
+            {
+                step--;
+                way.RemoveAt(way.Count - 1);
+            }
+        }
+        x = way[step - 1][0];
+        y = way[step - 1][1];
+        return step;
+    }
+
+    public int[][] find_way(int[] from, int[] to)
+    {
+        size_lab = lab.GetLength(0);
+
+        mas = new int[size_lab, size_lab];
+
+        int[] list_way = new int[4];
+        for (int i = 0; i < size_lab; i++)
+        {
+            for (int j = 0; j < size_lab; j++)
+            {
+                mas[i, j] = 0;
+            }
+        }
+
+        int count = 2;
+
+        way.Clear();
+        way.Add(from);
+        int x = from[0], y = from[1];
+
+        while (true)
+        {
+            list_way = where_can_go(x, y);
+            if (list_way[0] == 1 && mas[x - 1, y] == 0)
+            {
+                x--;
+            }
+            else if (list_way[1] == 1 && mas[x, y - 1] == 0)
+            {
+                y--;
+            }
+            else if (list_way[2] == 1 && mas[x + 1, y] == 0)
+            {
+                x++;
+            }
+            else if (list_way[3] == 1 && mas[x, y + 1] == 0)
+            {
+                y++;
+            }
+            else
+            {
+                count = go_backwardFindingWay(ref x, ref y);
+                count++;
+                continue;
+            }
+
+            mas[x, y] = count;
+            way.Add(new int[] { x, y });
+
+            if (x == to[0] && y == to[1])
+            {
+                break;
+            }
+
+            count++;
+        }
+        return way.ToArray();
     }
 }

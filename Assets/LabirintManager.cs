@@ -13,7 +13,7 @@ public class LabirintManager : MonoBehaviour
     [SerializeField]
     private GameObject m_Floor;
 
-    private Labirint m_Labirint;
+    public Labirint m_Labirint;
 
     private int m_Sizelabirint = 10;
     private float m_SizeCell;
