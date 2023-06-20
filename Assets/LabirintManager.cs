@@ -91,7 +91,7 @@ public class LabirintManager : MonoBehaviour
 
     public int[] GetPositionInLabirint(Vector3 pos)
     {
-        return new int[2] { (int)((Mathf.Abs(m_OffsetLabirint) + pos.x) * m_Floor.transform.localScale.x), (int)((Mathf.Abs(m_OffsetLabirint) + pos.y) * m_Floor.transform.localScale.y)};
+        return new int[2] { (int)Mathf.RoundToInt((Mathf.Abs(m_OffsetLabirint) + pos.x) * m_Floor.transform.localScale.x), (int)Mathf.RoundToInt((Mathf.Abs(m_OffsetLabirint) + pos.y) * m_Floor.transform.localScale.y)};
     }
 
     public int[] GetWays(int[] pos)

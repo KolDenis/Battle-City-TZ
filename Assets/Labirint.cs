@@ -210,6 +210,23 @@ public class Labirint
             }
 
         }
+
+        Random r = new Random();
+
+        for (int i = 0; i < size_lab; i++)
+        {
+            int a = r.Next(size_lab);
+            int b = r.Next(size_lab);
+            int c = r.Next(2);
+            if (lab[a, b, c] == 1)
+            {
+                lab[a, b, c] = 0;
+            }
+            else
+            {
+                i--;
+            }
+        }
     }
 
     int go_backwardFindingWay(ref int x, ref int y)

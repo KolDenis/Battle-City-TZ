@@ -1,22 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : Tank
 {
-    [SerializeField] private GameObject m_Boom;
+    private GameObject m_Base;
 
-    
-    // Update is called once per frame
+    new void Start()
+    {
+        base.Start();
+
+        m_Base = GameObject.FindGameObjectWithTag("Base");
+    }
+
     void FixedUpdate()
     {
         if (!Input.anyKey) return;
 
         if (Input.GetKey(KeyCode.Space))
         {
-            Shoot();
+            GameObject hit = Shoot();
+
+            if (hit != null)
+            {
+                if(hit.tag == "Enemy")
+                {
+                    Destroy(hit);
+                }
+            }
         }
 
         if (!m_EnableControlling) return;
@@ -52,12 +66,8 @@ public class PlayerController : Tank
         }
     }
 
-    private void Shoot()
+    public void Respawn()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.up * m_Scale*2, transform.up, 100);
-        if (hit.collider != null)
-        {
-            Instantiate<GameObject>(m_Boom, new Vector3(hit.point.x, hit.point.y, -3) , Quaternion.identity);
-        }
+        transform.position = m_Base.transform.position;
     }
 }
