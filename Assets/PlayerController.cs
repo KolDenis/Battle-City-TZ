@@ -8,16 +8,29 @@ using UnityEngine;
 public class PlayerController : Tank
 {
     private GameObject m_Base;
+    private int m_Lives = 3;
+    private int m_Score = 0;
 
     new void Start()
     {
         base.Start();
 
         m_Base = GameObject.FindGameObjectWithTag("Base");
+
+        UIManager.Instance.SetLives(m_Lives);
     }
 
     void FixedUpdate()
     {
+        if(m_Base.IsDestroyed())
+        {
+            UIManager.Instance.gameOver(false, m_Score);
+        }
+        else if(EnemyManager.Instance.ActiveEnemys == 0)
+        {
+            UIManager.Instance.gameOver(true, m_Score);
+        }
+
         if (!Input.anyKey) return;
 
         if (Input.GetKey(KeyCode.Space))
@@ -27,6 +40,12 @@ public class PlayerController : Tank
             if (hit != null)
             {
                 if(hit.tag == "Enemy")
+                {
+                    Destroy(hit);
+                    m_Score += 10;
+                    EnemyManager.Instance.EnemyKilled();
+                }
+                else
                 {
                     Destroy(hit);
                 }
@@ -68,6 +87,19 @@ public class PlayerController : Tank
 
     public void Respawn()
     {
+        StopCoroutine("MoveObject");
         transform.position = m_Base.transform.position;
+        m_Position = m_StartPositionInLabirint;
+        m_Lives -= 1;
+        UIManager.Instance.SetLives(m_Lives);
+
+        if (m_Lives == 0)
+        {
+            UIManager.Instance.gameOver(false, m_Score);
+        }
+        else
+        {
+            m_EnableControlling = true;
+        }
     }
 }

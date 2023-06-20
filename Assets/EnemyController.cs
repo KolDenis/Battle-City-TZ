@@ -7,13 +7,26 @@ using UnityEngine;
 public class EnemyController : Tank
 {
     List<int[]> m_Way;
-    // Start is called before the first frame update
+
+    private GameObject m_Base;
+    
+    void OnAwake()
+    {
+        OnPositionSet = PositionSet;
+    }
     new void Start()
     {
         base.Start();
+    }
 
-        GameObject Base = GameObject.FindGameObjectWithTag("Base");
-        int[] basePosition = LabirintManager.Instance.GetPositionInLabirint(Base.transform.localPosition);
+    void PositionSet()
+    {
+        Debug.Log("asdf");
+        m_Base = BaseSpawner.Instance.gameObject;
+        int[] basePosition = LabirintManager.Instance.GetPositionInLabirint(m_Base.transform.localPosition);
+
+        Debug.Log($"{basePosition[0]}  {basePosition[1]}");
+        Debug.Log($"{m_Position[0]}  {m_Position[1]}");
 
         m_Way = LabirintManager.Instance.m_Labirint.find_way(m_Position, basePosition).ToList();
     }
@@ -21,6 +34,8 @@ public class EnemyController : Tank
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (m_Base == null) return;
+
         GameObject hit = Shoot();
 
         if (hit != null)
@@ -29,10 +44,11 @@ public class EnemyController : Tank
             {
                 hit.GetComponent<PlayerController>().Respawn();
             }
-            else if (hit.tag == "Base")
+            else
             {
-                hit.GetComponent<Base>().Destroy();
+                Destroy(hit);
             }
+            return;
         }
 
         if (!m_EnableControlling) return;
