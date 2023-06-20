@@ -17,10 +17,6 @@ public class Labirint
     {
         size_lab = size;
     }
-    public void ChangeSize(int size)
-    {
-        size_lab = size;
-    }
 
     public int[] where_can_go(int x, int y)
     {

@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7566705161138677979}
-  m_Layer: 0
+  - component: {fileID: 8776267420091016951}
+  m_Layer: 6
   m_Name: SmallTankA
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,6 +36,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &8776267420091016951
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7566705161138677988}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!1 &7566705161335919424
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +62,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7566705161335919431}
   - component: {fileID: 7566705161335919430}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7566705161776360735}
   - component: {fileID: 7566705161776360734}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Track
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7566705162156789347}
   - component: {fileID: 7566705162156789346}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7566705162786744296}
   - component: {fileID: 7566705162786744303}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hull
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7566705162831983180}
   - component: {fileID: 7566705162831983171}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7566705162958062283}
   - component: {fileID: 7566705162958062282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Track
   m_TagString: Untagged
   m_Icon: {fileID: 0}

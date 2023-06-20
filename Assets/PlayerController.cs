@@ -6,8 +6,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject m_Boom;
+
     [SerializeField] private int[] m_Position;
     private bool m_EnableControlling = true;
+
+    private float m_Scale;
 
     //moving
     public float m_MoveDuration = 1f;
@@ -17,12 +21,20 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         m_Position = LabirintManager.Instance.GetPositionInLabirint(transform.localPosition);
+        m_Scale = transform.localScale.x * transform.parent.localScale.x;
+        Debug.Log(m_Scale);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         if (!Input.anyKey) return;
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Shoot();
+        }
+
         if (!m_EnableControlling) return;
 
         int[] ways = LabirintManager.Instance.GetWays(m_Position);
@@ -57,6 +69,15 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
                 Move(0, 1);
             }
+        }
+    }
+
+    private void Shoot()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.up * m_Scale*2, transform.up, 100);
+        if (hit.collider != null)
+        {
+            Instantiate<GameObject>(m_Boom, new Vector3(hit.point.x, hit.point.y, -3) , Quaternion.identity);
         }
     }
 
