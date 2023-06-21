@@ -1,7 +1,3 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class LabirintManager : MonoBehaviour
@@ -18,7 +14,7 @@ public class LabirintManager : MonoBehaviour
 
     public Labirint m_Labirint;
 
-    private int m_Sizelabirint = 20;
+    private int m_Sizelabirint = 10;
     private float m_SizeCell;
     private float m_OffsetLabirint;
     float m_WeightWall = 0.01f;
@@ -51,9 +47,9 @@ public class LabirintManager : MonoBehaviour
 
         m_SizeCell = 1f / (float)m_Sizelabirint;
         m_OffsetLabirint = -1f / 2f + m_SizeCell / 2;
-        m_WeightWall = m_Floor.transform.localScale.x / (1000 * m_Sizelabirint);
+        m_WeightWall = 0.01f;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
         m_Labirint = new Labirint(m_Sizelabirint);

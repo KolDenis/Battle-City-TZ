@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tank : MonoBehaviour
@@ -21,22 +19,12 @@ public class Tank : MonoBehaviour
     private Vector3 m_TargetPosition;
     private Vector3 m_StartPosition;
 
-    protected Action OnPositionSet;
-
     protected void Start()
     {
         m_Boom = Resources.Load<GameObject>("Boom");
         m_Scale = transform.localScale.x * transform.parent.localScale.x;
-    }
-
-    public void SetStartedPosition(int[] pos)
-    {
-        m_StartPositionInLabirint = pos;
-        m_Position = pos;
-        if(OnPositionSet != null)
-        {
-            OnPositionSet.Invoke();
-        }
+        m_StartPositionInLabirint = LabirintManager.Instance.GetPositionInLabirint(transform.localPosition);
+        m_Position = m_StartPositionInLabirint;
     }
 
     protected void Move(int x, int y)

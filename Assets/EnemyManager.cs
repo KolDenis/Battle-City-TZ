@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -11,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private GameObject m_Floor;
 
-    private int m_NumberEnemys = 8;
+    private int m_NumberEnemys = 3;
     private float m_FactorSizeTank = 0.3f;
 
     private int m_ActiveEnemys;
@@ -38,7 +36,6 @@ public class EnemyManager : MonoBehaviour
             GameObject spawnedTank = Instantiate<GameObject>(prefabTank, m_Floor.transform);
             spawnedTank.transform.localPosition = new Vector3(offsetLabirint + cell % labirintSize * sizeCell, offsetLabirint + cell / labirintSize * sizeCell, -2);
             spawnedTank.transform.localScale = Vector3.one * sizeCell * m_FactorSizeTank;
-            spawnedTank.GetComponent<EnemyController>().SetStartedPosition(new int[] { cell % labirintSize, cell / labirintSize });
         }
         m_ActiveEnemys = m_NumberEnemys;
         UIManager.Instance.SetEnemys(m_ActiveEnemys);

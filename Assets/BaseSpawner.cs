@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseSpawner : MonoBehaviour
@@ -16,7 +14,6 @@ public class BaseSpawner : MonoBehaviour
     private float m_FactorSizeBase = 0.4f;
     private float m_FactorSizePlayer = 0.35f;
 
-    // Start is called before the first frame update
     void Start()
     {
         Instance = this;
@@ -34,11 +31,5 @@ public class BaseSpawner : MonoBehaviour
         GameObject spawnedplayer = Instantiate<GameObject>(m_Player, m_Floor.transform);
         spawnedplayer.transform.localPosition = new Vector3(offsetLabirint + cell % labirintSize * sizeCell, offsetLabirint + cell / labirintSize * sizeCell, -2);
         spawnedplayer.transform.localScale = Vector3.one * sizeCell * m_FactorSizePlayer;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

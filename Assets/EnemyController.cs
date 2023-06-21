@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyController : Tank
@@ -9,20 +7,11 @@ public class EnemyController : Tank
     List<int[]> m_Way;
 
     private GameObject m_Base;
-    
-    void OnAwake()
-    {
-        OnPositionSet = PositionSet;
-    }
+
     new void Start()
     {
         base.Start();
-    }
-
-    void PositionSet()
-    {
-        Debug.Log("asdf");
-        m_Base = BaseSpawner.Instance.gameObject;
+        m_Base = GameObject.FindGameObjectWithTag("Base");
         int[] basePosition = LabirintManager.Instance.GetPositionInLabirint(m_Base.transform.localPosition);
 
         Debug.Log($"{basePosition[0]}  {basePosition[1]}");
@@ -31,7 +20,6 @@ public class EnemyController : Tank
         m_Way = LabirintManager.Instance.m_Labirint.find_way(m_Position, basePosition).ToList();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (m_Base == null) return;
